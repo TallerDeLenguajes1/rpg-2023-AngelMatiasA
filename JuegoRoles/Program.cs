@@ -1,4 +1,6 @@
 ﻿using System;
+using EspacioFabrica;  
+using EspacioPersonaje; 
 
 namespace MyApp // Note: actual namespace depends on the project name.
 {
@@ -6,7 +8,12 @@ namespace MyApp // Note: actual namespace depends on the project name.
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            FabricaDePersonajes fp = new FabricaDePersonajes(); 
+             
+             Personaje pj = fp.CrearPersonaje();
+             
+          
+            
         }
     }
 }
