@@ -9,7 +9,7 @@ public class ImplementJuego
 {
     bool valido = false;
 
-    public void implementar(string nombreArchivo)
+    public List<Personaje> implementar(string nombreArchivo)
     {
         PersonajesJson psjJ = new PersonajesJson();
         FabricaDePersonajes nuevaFabrik = new FabricaDePersonajes();
@@ -21,6 +21,7 @@ public class ImplementJuego
 
             /*Bandera p ver si existe el arch y tiene 10 jug*/
             valido = true;
+            Console.WriteLine("Bienvenido al juego \n estos son los luchadores ");
             foreach (var pj in persList)
             {
                 nuevaFabrik.mostrarPersonaje(pj);
@@ -39,7 +40,8 @@ public class ImplementJuego
                 
             }
             psjJ.GuardarPersonajes(persList, nombreArchivo);
-             
+            Console.WriteLine("Bienvenido al juego \n estos son los luchadores ");
+
              foreach (var pj in persList)
             {
                 nuevaFabrik.mostrarPersonaje(pj);
@@ -48,6 +50,7 @@ public class ImplementJuego
 
         }
 
+        return persList;
 
     }
 
