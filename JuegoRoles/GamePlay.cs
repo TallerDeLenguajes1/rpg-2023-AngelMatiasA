@@ -31,7 +31,7 @@ por ejemplo: +10 en salud o +5 en defensa. */
 
         ImplementJuego psJ = new ImplementJuego();
         List<Personaje> listaJugadores = psJ.implementar(nombreArchivo);
-        bool final = false;
+
         largo = listaJugadores.Count;
 
         do
@@ -43,28 +43,29 @@ por ejemplo: +10 en salud o +5 en defensa. */
              // ya que ire eliminando los jugadores de la lista original
                 do
                 {
-                    indice = R.Next(0, largo - 1);
+                    indice = R.Next(0, largo );
                     p1 = listaJugadores[indice];
-                    indice2 = R.Next(0, largo - 1);
-                    p1 = listaJugadores[indice2];
+                    indice2 = R.Next(0, largo );
+                    p2 = listaJugadores[indice2];
 
 
                 } while (indice == indice2);
-                listaJugadores.Remove(p1);
-                listaJugadores.Remove(p2);
+
                 //los saco d la lista para no volver a repetir
                 mensajeCombate(combate);
-                
+
                 ganador = Combate(p1, p2);
+                listaJugadores.Remove(p1);
+                listaJugadores.Remove(p2);
 
 
             }
             else//en el caso que no sea el primer juego
             {
-                combate++; 
-                  mensajeCombate(combate);
+                combate++;
+                mensajeCombate(combate);
 
-                indice = R.Next(0, largo - 1);
+                indice = R.Next(0, largo );
                 if (ganador == p1)
                 {
                     p1 = ganador;
@@ -101,39 +102,48 @@ por ejemplo: +10 en salud o +5 en defensa. */
     private Personaje Combate(Personaje p1, Personaje p2)
     {
         Personaje ganador = new Personaje();
+        ganador = p2;
         int turno = 0;
         int round = 0;
         int danio = 0;
 
 
-        Console.WriteLine("\n*************** \n \t Se prepara para el combate \n \t **************");
-        Console.WriteLine($"\t \t JUGADOR NOMBRE \t APODO {ganador.Apodo}");
-        Console.WriteLine($"\t \t {p1.Nombre} \t APODO: {p1.Apodo}");
-        Console.WriteLine($"\t \t VERSUS ");
-        Console.WriteLine($"\t \t {p2.Nombre} \t APODO: {p2.Apodo}");
+        Console.WriteLine("\n  \t  ******** Se preparan para el combate \t **************  \n");
+        Console.WriteLine($"JUGADORES: \t NOMBRES \t APODOS ");
+        Console.WriteLine($"\t \t {p1.Nombre} \t\t{p1.Apodo}");
+        Console.WriteLine($"\t \t \t  VERSUS:  ");
+        Console.WriteLine($"\n \t \t {ganador.Nombre}\t \t {ganador.Apodo}");
 
 
-        turno = R.Next(1, 2);
+        turno = R.Next(1, 3);
         do
         {
             round++;
-            Console.WriteLine("Round nro: " + round);
+            Console.WriteLine($" \n ************ \t ******* \t ROUND NUMERO: {round} \t ******* \t ************ \n");
 
             if (turno == 1)
             {
                 danio = danioProvocado(p1, p2);
                 mensajeRound(p1, p2);
+
                 p2.Salud -= danio;
-                 Console.Write("SALUD: ");
+                Console.WriteLine($"Ataque de daño = {danio}");
+                Console.WriteLine($"Salud de {p2.Nombre}, {p2.Apodo}");
+                Console.Write("SALUD: ");
                 for (int i = 0; i < p2.Salud; i++)
                 {
-                    Console.Write('*');
+                    Console.Write('♡');
 
                 }
-                
+                Console.WriteLine($"= {p2.Salud}");
 
-                
+
+
                 ganador = p1;// el que pegue al ultimo gana
+                Console.WriteLine("\n presione una tecla para continuar ");
+                Console.ReadKey();
+                Console.WriteLine("\n========================================================================================================== \n ");
+
                 turno++;
 
             }
@@ -141,15 +151,21 @@ por ejemplo: +10 en salud o +5 en defensa. */
             {
                 danio = danioProvocado(p2, p1);
                 mensajeRound(p2, p1);
-                 p1.Salud -= danio;
+                p1.Salud -= danio;
+                Console.WriteLine($"Ataque de dano = {danio}");
+                Console.WriteLine($"Salud de {p1.Nombre}, {p1.Apodo}");
                 Console.Write("SALUD: ");
                 for (int i = 0; i < p1.Salud; i++)
                 {
-                    Console.Write('*');
+                    Console.Write('♡');
 
                 }
+                Console.WriteLine($"= {p1.Salud}");
+                Console.WriteLine("\n presione una tecla para continuar ");
+                Console.ReadKey();
+                Console.WriteLine("\n========================================================================================================== ");
 
-               
+
                 ganador = p2;
                 turno--;
             }
@@ -164,7 +180,7 @@ por ejemplo: +10 en salud o +5 en defensa. */
         {
             ganador.Armadura += 5;
         }
-        Console.WriteLine($"\t GANADOR DEL COMBATE \n  \t JUGADOR NOMBRE: {ganador.Nombre} \n \t APODO: {ganador.Apodo}");
+        Console.WriteLine($" ***** \t ******** \t \t ¡¡¡GANADOR DEL COMBATE!!! \t \t ******** \t ***** \n");
         perFab.mostrarPersonaje(ganador);
 
 
@@ -174,9 +190,9 @@ por ejemplo: +10 en salud o +5 en defensa. */
     {
         int danio = 0;
         int Ataque = ataca.Destreza * ataca.Fuerza * ataca.Nivel;
-        int efectivdad = R.Next(1, 100);
+        int efectivdad = R.Next(1, 101);
         int defensa = defiende.Armadura * defiende.Velocidad;
-        const int AJUSTE = 500;
+        const int AJUSTE = 150;
 
         danio = ((Ataque * efectivdad) - defensa) / AJUSTE;
 
@@ -188,34 +204,35 @@ por ejemplo: +10 en salud o +5 en defensa. */
 
     private void mensajeRound(Personaje ataca, Personaje defiende)
     {
-        Console.WriteLine($"se prepara para atacar {ataca.Nombre}, {ataca.Apodo}");
-        Console.WriteLine($"\t\t ************** \n se prepara para defender {defiende.Nombre}, {defiende.Apodo}");
-        Console.WriteLine($"\t Salud del defensor: {defiende.Nombre}, {defiende.Apodo}");
+        Console.WriteLine($"\t\t se prepara para atacar {ataca.Nombre}, {ataca.Apodo}");
+        Console.WriteLine($"\t\t ************** \n \t\t se prepara para defender {defiende.Nombre}, {defiende.Apodo}");
+        Console.WriteLine($"\n\t\t ***********\t \n \t Salud del defensor: {defiende.Nombre}, {defiende.Apodo}");
         Console.Write("SALUD: ");
         for (int i = 0; i < defiende.Salud; i++)
         {
-            Console.Write('*');
+            Console.Write('♡');
 
         }
-        Console.WriteLine("\n presione una tecla para atacar ");
+        Console.Write($" = {defiende.Salud} \n");
+        Console.WriteLine("\n presione una tecla para atacar \n ");
         Console.ReadKey();
 
 
 
 
     }
-      private void mensajeCombate(int numeroCombate)
+    private void mensajeCombate(int numeroCombate)
     {
-         Console.WriteLine($" Preparese para el Combate numero : {numeroCombate}");
-                Console.WriteLine("presione una tecla para comenzar"); 
-                Console.ReadKey();
+        Console.WriteLine($"  \t  ************ \t ¡¡¡ PREPARESE PARA EL COMBATE NUMERO: {numeroCombate} !!! \t ************ ");
+        Console.WriteLine("presione una tecla para comenzar");
+        Console.ReadKey();
 
 
 
 
     }
 
-   
+
 
 
 }

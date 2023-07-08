@@ -15,10 +15,10 @@ namespace MyApp // Note: actual namespace depends on the project name.
             GamePlay juegoNuevo = new GamePlay();  
             ganador = juegoNuevo.jugar(nombreArchivo); 
 
-            Console.WriteLine("el JUego termino!! \n \n ************** \n \n************\n \t\t*****"); 
+            Console.WriteLine("¡¡¡EL JUEGO TERMINO!!! \n \n ************** \n \n************\n \t\t*****"); 
             Console.WriteLine("presione una tecla para continuar "); 
             Console.ReadKey(); 
-            Console.WriteLine("EL GANADOR ES  \n \n ************** \n \t "); 
+            Console.WriteLine("EL GANADOR ES DE TODO EL TORNEO ES  \n \n ************** \n \t "); 
             perFab.mostrarPersonaje(ganador);
 
 

@@ -21,7 +21,9 @@ namespace EspacioPersJson // Note: actual namespace depends on the project name.
 
              string json = File.ReadAllText(nombreArchivo);
              List<Personaje> listPers= JsonSerializer.Deserialize<List<Personaje>>(json);
-             return listPers;
+                                        JsonSerializer.Deserialize<List<Personaje>>(json);
+             return listPers; 
+             
           
         }
 
