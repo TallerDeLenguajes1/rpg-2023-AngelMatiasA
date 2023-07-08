@@ -34,6 +34,16 @@ namespace EspacioFabrica // Note: actual namespace depends on the project name.
 
             return pers;
         }
+        public void mostrarPersonaje( Personaje persj){
+            Console.WriteLine($"Nombre : {persj.Nombre} ");
+            Console.WriteLine($"Apodo : {persj.Apodo} ");
+            Console.WriteLine($"Armadura : {persj.Armadura} ");
+            Console.WriteLine($"Destreza : {persj.Destreza} ");
+            Console.WriteLine($"Nivel : {persj.Nivel} ");
+            Console.WriteLine($"Velocidad : {persj.Velocidad} ");
+            Console.WriteLine(" \n \t \t ********************** \n ");
+
+        }
 
         //  public FabricaDePersonajes() {
 
