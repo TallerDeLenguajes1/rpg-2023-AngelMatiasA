@@ -6,6 +6,7 @@ using ImplementacionJuego;
 namespace EspacioGamePlay;
 public class GamePlay
 {
+    Random R = new Random();
     /*1) Elija 2 personajes para que compitan entre ellos.
     2) El combate se realiza por turnos. Por cada turno un personaje ataca y el otro se
 defiende.
@@ -20,7 +21,7 @@ por ejemplo: +10 en salud o +5 en defensa. */
         Personaje ganador = new Personaje();
         Personaje p1 = new Personaje();
         Personaje p2 = new Personaje();
-        Random R = new Random();
+        
         int indice = 0;
         int indice2 = 0;
         int largo = 0;
@@ -85,27 +86,39 @@ por ejemplo: +10 en salud o +5 en defensa. */
 
     }
 
-    private static Personaje Combate ( Personaje p1, Personaje p2){
+    private  Personaje Combate ( Personaje p1, Personaje p2){
         Personaje ganador = new Personaje();
         int turno = 0; 
-          Random R = new Random();
+          
         turno = R.Next(1,2);
         do
         {
             if (turno ==1)
             {
-
+                p2.Salud -= danioProvocado(p1, p2);
                 ganador = p1;// el que pegue al ultimo gana
+                turno++;
                 
             }
             else
             {
-                ganador = p1;
+                p1.Salud -= danioProvocado(p1, p2);
+                ganador = p2;
+                turno--;
             }
             
         } while (p1.Salud >0 && p2.Salud >0 );
+        Console.WriteLine($"\t GANADOR DEL COMBATE \n  \t JUGADOR NOMBRE: {ganador.Nombre} \n \t APODO: {ganador.Apodo}");
 
         return ganador;
+    }
+    private  int danioProvocado ( Personaje ataca, Personaje defiende){
+        int danio=0;
+        int Ataque = ataca.Destreza* ataca.Fuerza * ataca.Nivel;
+
+
+        return danio;
+
     }
 
 

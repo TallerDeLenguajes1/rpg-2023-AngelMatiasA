@@ -29,6 +29,7 @@ namespace EspacioFabrica // Note: actual namespace depends on the project name.
             pers.Destreza = r.Next(1, 5); 
             pers.Nivel = r.Next(1, 10); 
             pers.Velocidad = r.Next(1, 10);
+            pers.Fuerza = r.Next(1, 10);
 
           
 
@@ -41,6 +42,7 @@ namespace EspacioFabrica // Note: actual namespace depends on the project name.
             Console.WriteLine($"Destreza : {persj.Destreza} ");
             Console.WriteLine($"Nivel : {persj.Nivel} ");
             Console.WriteLine($"Velocidad : {persj.Velocidad} ");
+            Console.WriteLine($"Fuerza : {persj.Fuerza} ");
             Console.WriteLine(" \n \t \t ********************** \n ");
 
         }

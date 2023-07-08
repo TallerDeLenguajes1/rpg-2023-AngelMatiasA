@@ -10,6 +10,7 @@ namespace EspacioPersonaje // Note: actual namespace depends on the project name
         private int velocidad;//1a10
         private int destreza;//1a5
         private int nivel;//1a10
+        private int fuerza;//1a10
         private int armadura;//1a10
         private int salud = 100;//100 
         public DateTime fecha_nacimiento;
@@ -29,5 +30,6 @@ namespace EspacioPersonaje // Note: actual namespace depends on the project name
         public int Salud { get => salud; set => salud = value; }
         public int Edad { get => salud; set => salud = value; }
         public DateTime Fecha_nacimiento { get => fecha_nacimiento; set => fecha_nacimiento = value; }
+        public int Fuerza { get => fuerza; set => fuerza = value; }
     }
 }
