@@ -2,7 +2,7 @@ using System;
 using EspacioFabrica;  
 using EspacioPersonaje;   
 using System.Text.Json;
-using System.Text.Json.Serializatio; 
+
 using System.IO;
 
 
@@ -19,9 +19,8 @@ namespace EspacioPersJson // Note: actual namespace depends on the project name.
         
         public  List<Personaje>  LeerPersonajes (string nombreArchivo){ //deserializacion
 
-             string json = ReadAllText(nombreArchivo);
-             List<Personaje> listPers= JsonSerializer.Deserialiaze<List<Personaje>>(json);
-                        
+             string json = File.ReadAllText(nombreArchivo);
+             List<Personaje> listPers= JsonSerializer.Deserialize<List<Personaje>>(json);
              return listPers;
           
         }

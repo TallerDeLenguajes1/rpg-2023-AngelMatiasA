@@ -1,6 +1,7 @@
 ﻿using System;
 using EspacioFabrica;  
 using EspacioPersonaje; 
+using EspacioGamePlay;
 
 namespace MyApp // Note: actual namespace depends on the project name.
 {
@@ -8,18 +9,21 @@ namespace MyApp // Note: actual namespace depends on the project name.
     {
         static void Main(string[] args)
         {
-            FabricaDePersonajes fp = new FabricaDePersonajes(); 
-             
-             Personaje pj = fp.CrearPersonaje();
-             
-          List<Personaje> listaPersonaje =  new List<Personaje>(); 
+            string nombreArchivo = "juegoPrueba.txt";
+            Personaje ganador = new Personaje(); 
+            FabricaDePersonajes perFab = new FabricaDePersonajes(); 
+            GamePlay juegoNuevo = new GamePlay();  
+            ganador = juegoNuevo.jugar(nombreArchivo); 
 
-          for (int i = 0; i < 10; i++)
-          {
-             
-              listaPersonaje.Add(fp.CrearPersonaje());
-            
-          }
+            Console.WriteLine("el JUego termino!! \n \n ************** \n \n************\n \t\t*****"); 
+            Console.WriteLine("presione una tecla para continuar "); 
+            Console.ReadKey(); 
+            Console.WriteLine("EL GANADOR ES  \n \n ************** \n \t "); 
+            perFab.mostrarPersonaje(ganador);
+
+
+
+                 
             
         }
     }
