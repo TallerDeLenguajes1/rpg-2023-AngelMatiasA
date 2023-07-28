@@ -5,7 +5,9 @@ namespace EspacioFabrica // Note: actual namespace depends on the project name.
 {
     public class FabricaDePersonajes
     {  
-     
+     int anio = 0; 
+     int mes = 0;
+     int dia = 0;
     
        public string [] apodo = {"luchon", "guerrero", "zeus", "phoenix ", " ninja"};
        string [] nombress = {"Pepe", "Juan","Pedro", "Juana", "Miguel"}; 
@@ -30,7 +32,11 @@ namespace EspacioFabrica // Note: actual namespace depends on the project name.
             pers.Nivel = r.Next(1, 11); 
             pers.Velocidad = r.Next(1, 11);
             pers.Fuerza = r.Next(1, 11);
-
+            anio = r.Next(1723,2024);
+            mes = r.Next(1,13);
+            dia = r.Next(1,29);
+              pers.Fecha_nacimiento = new DateTime(anio, mes, dia);
+        pers.Edad = CalcularEdad(pers.Fecha_nacimiento);
           
 
             return pers;
@@ -44,13 +50,23 @@ namespace EspacioFabrica // Note: actual namespace depends on the project name.
             Console.WriteLine($"Velocidad : {persj.Velocidad} ");
             Console.WriteLine($"Fuerza : {persj.Fuerza} ");
              Console.WriteLine($"Salud : {persj.Salud} ");
+              Console.WriteLine($"edad : {persj.Edad} ");
             Console.WriteLine(" \n \t \t ********************** \n ");
 
         }
 
-        //  public FabricaDePersonajes() {
+        public  int CalcularEdad(DateTime fechaNacimiento)
+    {
+        DateTime fechaActual = DateTime.Now;
+        int edad = fechaActual.Year - fechaNacimiento.Year;
 
-        // }
+        if (fechaActual.Month < fechaNacimiento.Month || (fechaActual.Month == fechaNacimiento.Month && fechaActual.Day < fechaNacimiento.Day))
+        {
+            edad--;
+        }
+        return edad;
+    }
+
         
     }
 }
